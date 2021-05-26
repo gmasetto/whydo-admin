@@ -24,7 +24,7 @@ function AdminNavbar() {
                 <img
                   alt="..."
                   className="logoImg"
-                  src={require("assets/img/brand/Whydo_Logo_03.png")}
+                  src={require("assets/img/brand/Whydo_Logo_05.png")}
                 />
               </NavbarBrand>
             </span>

@@ -19,7 +19,7 @@ function Auth(props) {
   return (
     <>
       <div className="main-content">
-        <AuthNavbar />
+        {/* <AuthNavbar /> */}
         {/* <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">
@@ -47,7 +47,7 @@ function Auth(props) {
           </div>
         </div> */}
         {/* Page content */}
-        <div className="bg-gradient-info py-7 py-lg-8">
+        <div className="bg-gradient-info py-5 py-lg-4">
           <Row className="justify-content-center">{props.children}</Row>
         </div>
       </div>
