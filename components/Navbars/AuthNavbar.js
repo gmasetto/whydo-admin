@@ -17,13 +17,14 @@ function AdminNavbar() {
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
-        <Container className="px-4">
+        <Container className="headerLogo">
           <Link href="/admin/dashboard">
             <span>
               <NavbarBrand href="#pablo">
                 <img
                   alt="..."
-                  src={require("assets/img/brand/nextjs_argon_black.png")}
+                  className="logoImg"
+                  src={require("assets/img/brand/Whydo_Logo_03.png")}
                 />
               </NavbarBrand>
             </span>
@@ -50,40 +51,6 @@ function AdminNavbar() {
                 </Col>
               </Row>
             </div>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link href="/admin/dashboard">
-                  <NavLink href="#pablo" className="nav-link-icon">
-                    <i className="ni ni-planet" />
-                    <span className="nav-link-inner--text">Dashboard</span>
-                  </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/auth/register">
-                  <NavLink href="#pablo" className="nav-link-icon">
-                    <i className="ni ni-circle-08" />
-                    <span className="nav-link-inner--text">Register</span>
-                  </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/auth/login">
-                  <NavLink href="#pablo" className="nav-link-icon">
-                    <i className="ni ni-key-25" />
-                    <span className="nav-link-inner--text">Login</span>
-                  </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/admin/profile">
-                  <NavLink href="#pablo" className="nav-link-icon">
-                    <i className="ni ni-single-02" />
-                    <span className="nav-link-inner--text">Profile</span>
-                  </NavLink>
-                </Link>
-              </NavItem>
-            </Nav>
           </UncontrolledCollapse>
         </Container>
       </Navbar>

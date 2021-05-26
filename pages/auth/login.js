@@ -24,7 +24,11 @@ function Login() {
       <Col lg="4" md="7">
         <Card className="bg-secondary shadow border-0">
           <CardHeader className="bg-transparent pb-5">
-            <div className="text-muted text-center mt-2 mb-3">
+            <div className="text-muted loginContainer text-center mt-2 mb-3">
+              <img
+                  src={require("assets/img/brand/Whydo_Logo_06.png")}
+                  alt=""
+              />
               <small>Sign in with</small>
             </div>
             <div className="btn-wrapper text-center">
