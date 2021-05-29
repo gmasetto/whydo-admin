@@ -15,6 +15,7 @@ module.exports = withFonts(
             test: /\.(eot|ttf|woff|woff2)$/,
             use: {
               loader: "url-loader",
+
             },
           });
           config.resolve.modules.push(path.resolve("./"));

@@ -16177,6 +16177,15 @@ button:focus, :focus {
   margin-right: 4px; }
 
 .table .badge i {
-  margin-right: 10px; }
+  margin-right: 10px;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
 
+.reactSelectContainer {
+  background: red;
+  width: 100px !important;
+}
 /*# sourceMappingURL=nextjs-argon-dashboard.css.map */
