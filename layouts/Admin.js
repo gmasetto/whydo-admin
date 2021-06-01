@@ -33,7 +33,7 @@ function Admin(props) {
         routes={routes}
         logo={{
           innerLink: "/admin/index",
-          imgSrc: require("assets/img/brand/Webp.net-resizeimage.png"),
+          imgSrc: require("assets/img/brand/whydorezise2.png"),
           imgAlt: "...",
         }}
       />

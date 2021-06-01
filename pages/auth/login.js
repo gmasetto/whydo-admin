@@ -22,10 +22,10 @@ function Login() {
   return (
     <>
       <Col lg="4" md="5">
-        <Card className="bg-secondary shadow border-0">
+        <Card className="bg-secondary shadow loginMargin border-0">
           <CardHeader className="bg-transparent">
             <div className="text-muted loginContainer text-center">
-              <img src={require("assets/img/brand/Whydo_Logo_05.png")} />
+              <img src={require("assets/img/brand/whydorezise2.png")} />
               <small>Sign</small>
             </div>
             <div className="btn-wrapper text-center">

@@ -47,8 +47,8 @@ function Auth(props) {
           </div>
         </div> */}
         {/* Page content */}
-        <div className="bg-gradient-info py-5 py-lg-4">
-          <Row className="justify-content-center">{props.children}</Row>
+        <div className="bg-gradient-info py-5 fullHeight py-lg-4">
+          <Row className="justify-content-center removeMargin">{props.children}</Row>
         </div>
       </div>
       {/* <AuthFooter /> */}

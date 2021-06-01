@@ -325,7 +325,9 @@ let chartExample1 = {
             zeroLineColor: colors.gray[900],
           },
           ticks: {
+
             callback: function (value) {
+              console.log(value)
               if (!(value % 10)) {
                 return "$" + value + "k";
               }
@@ -353,11 +355,11 @@ let chartExample1 = {
   },
   data1: (canvas) => {
     return {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["Jan", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          data: [0, 20, 10, 30, 15, 40, 20, 60, 70],
         },
       ],
     };
