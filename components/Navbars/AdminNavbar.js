@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 // reactstrap components
 import {
@@ -18,17 +18,49 @@ import {
   Media,
 } from "reactstrap";
 import Select from "react-select";
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+import {AuthContext} from "../../contexts/AuthContext";
+import {api} from "../../services/api";
+import {destroyCookie} from 'nookies'
+import Router from "next/router";
+import {toast} from "react-toastify";
 function AdminNavbar({ brandText }) {
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    api.get('/events/').then(({data}) => {
+      setEvents(data)
+    })
+  },[])
+
+
+  let options = [];
+  events.map(event => {
+    const value = event.name.toLowerCase()
+    options.push({
+      value,
+      label: event.name
+    })
+  })
+
+  const { user } = useContext(AuthContext)
+
+  const name = user ? user.name : 'Usuario'
+
+  function handleLogout() {
+    destroyCookie(undefined, 'whydo-token')
+    destroyCookie(undefined, 'whydo-email')
+    Router.push("/auth/login");
+    toast.success('Deslogado com sucesso!', {
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container className="headerContainer" fluid >
-          <div style={{width: '150px'}}>
+          <div style={{width: '250px'}}>
             <Select options={options} />
           </div>
           <Nav className="align-items-center d-none d-md-flex" navbar>
@@ -43,7 +75,7 @@ function AdminNavbar({ brandText }) {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Jessica Jones
+                      {name}
                     </span>
                   </Media>
                 </Media>
@@ -77,7 +109,7 @@ function AdminNavbar({ brandText }) {
                   </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem onClick={() => handleLogout()}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

@@ -327,7 +327,6 @@ let chartExample1 = {
           ticks: {
 
             callback: function (value) {
-              console.log(value)
               if (!(value % 10)) {
                 return "$" + value + "k";
               }

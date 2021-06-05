@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -8,12 +8,23 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
+import {parseCookies} from "nookies";
 
-function Admin(props) {
+export default function Admin(props) {
+
+
+
   // used for checking current route
   const router = useRouter();
   let mainContentRef = React.createRef();
   React.useEffect(() => {
+
+    const {['whydo-token']: token} = parseCookies()
+
+    if(!token) {
+      Router.push("/");
+    }
+
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
@@ -48,4 +59,3 @@ function Admin(props) {
   );
 }
 
-export default Admin;

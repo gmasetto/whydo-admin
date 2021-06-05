@@ -7,9 +7,18 @@ import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
+import {ToastContainer} from "react-toastify";
+import {parseCookies} from "nookies";
+import Router from "next/router";
 
 function Auth(props) {
   React.useEffect(() => {
+
+    const {['whydo-token']: token} = parseCookies()
+
+    if(token) {
+      Router.push("/admin/dashboard");
+    }
     document.body.classList.add("bg-default");
     // Specify how to clean up after this effect:
     return function cleanup() {

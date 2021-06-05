@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, {useContext} from "react";
+import {useForm} from "react-hook-form";
 // reactstrap components
 import {
   Button,
@@ -17,8 +17,19 @@ import {
 } from "reactstrap";
 // layout for this page
 import Auth from "layouts/Auth.js";
-
+import {AuthContext} from "../../contexts/AuthContext";
+import { toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function Login() {
+
+  const { register, handleSubmit } = useForm();
+
+  const {signIn} = useContext(AuthContext || null )
+
+  async function handleSignIn(data) {
+      await signIn(data)
+  }
+
   return (
     <>
       <Col lg="4" md="5">
@@ -26,44 +37,13 @@ function Login() {
           <CardHeader className="bg-transparent">
             <div className="text-muted loginContainer text-center">
               <img src={require("assets/img/brand/whydorezise2.png")} />
-              <small>Sign</small>
-            </div>
-            <div className="btn-wrapper text-center">
-              {/* <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={require("assets/img/icons/common/github.svg")}
-                  />
-                </span>
-                <span className="btn-inner--text">Github</span>
-              </Button>
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={require("assets/img/icons/common/google.svg")}
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button> */}
             </div>
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
               <small>Or sign in with credentials</small>
             </div>
-            <Form role="form">
+            <Form role="form" onSubmit={handleSubmit(handleSignIn)}>
               <FormGroup className="mb-3">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -72,6 +52,7 @@ function Login() {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                      {...register('email')}
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
@@ -86,6 +67,7 @@ function Login() {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                      {...register('password')}
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
@@ -106,7 +88,7 @@ function Login() {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button className="my-4" color="primary" type="submit">
                   Sign in
                 </Button>
               </div>
