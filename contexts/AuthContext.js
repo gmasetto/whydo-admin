@@ -9,10 +9,12 @@ export const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
 
   const isAuthenticated = !!user;
 
   useEffect(() => {
+
     const { 'whydo-token': token, 'whydo-email': email } = parseCookies()
 
     if(token) {
@@ -23,7 +25,7 @@ export function AuthProvider({ children }) {
       })
     }
 
-  },[])
+  },[accessToken])
 
   async function signIn({email, password}) {
     try {
@@ -40,7 +42,7 @@ export function AuthProvider({ children }) {
       })
 
       setUser(email)
-
+      setAccessToken(access_token)
       Router.push('/admin/dashboard')
     } catch (e) {
       console.log(e)

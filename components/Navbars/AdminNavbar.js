@@ -43,8 +43,9 @@ function AdminNavbar({ brandText }) {
     })
   })
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext || null)
 
+  console.log(user)
   const name = user ? user.name : 'Usuario'
 
   function handleLogout() {
