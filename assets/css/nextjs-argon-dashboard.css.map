@@ -210,6 +210,7 @@
 		"../scss/react/_mixins.scss",
 		"../scss/react/_navbar-dropdown.scss",
 		"../scss/react/_navbar.scss",
+		"../scss/react/_login.scss",
 		"../scss/react/_page-transition.scss",
 		"../scss/react/_tables.scss"
 	],

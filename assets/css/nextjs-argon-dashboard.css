@@ -13022,8 +13022,7 @@ textarea[resize="horizontal"] {
     margin-right: 0; }
   .navbar-vertical .navbar-brand-img,
   .navbar-vertical .navbar-brand > img {
-    max-width: 100%;
-    max-height: 2rem; }
+    max-width: 100%; }
   @media (min-width: 768px) {
     .navbar-vertical .navbar-collapse {
       margin-left: -1rem;
@@ -13144,8 +13143,6 @@ textarea[resize="horizontal"] {
       text-align: center;
       padding-top: 1rem;
       padding-bottom: 1rem; }
-    .navbar-vertical.navbar-expand-xs .navbar-brand-img {
-      max-height: 2.5rem; }
     .navbar-vertical.navbar-expand-xs .navbar-user {
       margin-left: -1.5rem;
       margin-right: -1.5rem;
@@ -13218,8 +13215,6 @@ textarea[resize="horizontal"] {
         text-align: center;
         padding-top: 1rem;
         padding-bottom: 1rem; }
-      .navbar-vertical.navbar-expand-sm .navbar-brand-img {
-        max-height: 2.5rem; }
       .navbar-vertical.navbar-expand-sm .navbar-user {
         margin-left: -1.5rem;
         margin-right: -1.5rem;
@@ -13292,8 +13287,6 @@ textarea[resize="horizontal"] {
         text-align: center;
         padding-top: 1rem;
         padding-bottom: 1rem; }
-      .navbar-vertical.navbar-expand-md .navbar-brand-img {
-        max-height: 2.5rem; }
       .navbar-vertical.navbar-expand-md .navbar-user {
         margin-left: -1.5rem;
         margin-right: -1.5rem;
@@ -13366,8 +13359,6 @@ textarea[resize="horizontal"] {
         text-align: center;
         padding-top: 1rem;
         padding-bottom: 1rem; }
-      .navbar-vertical.navbar-expand-lg .navbar-brand-img {
-        max-height: 2.5rem; }
       .navbar-vertical.navbar-expand-lg .navbar-user {
         margin-left: -1.5rem;
         margin-right: -1.5rem;
@@ -13440,8 +13431,6 @@ textarea[resize="horizontal"] {
         text-align: center;
         padding-top: 1rem;
         padding-bottom: 1rem; }
-      .navbar-vertical.navbar-expand-xl .navbar-brand-img {
-        max-height: 2.5rem; }
       .navbar-vertical.navbar-expand-xl .navbar-user {
         margin-left: -1.5rem;
         margin-right: -1.5rem;
@@ -16132,6 +16121,28 @@ button:focus, :focus {
 .navbar .nav-item .nav-link-icon.nav-link i {
   margin-right: 4px; }
 
+.headerLogo {
+  position: absolute;
+  margin-top: 50px; }
+  .headerLogo .logoImg {
+    height: 300px !important; }
+
+.loginMargin {
+  margin-top: 20px; }
+
+.fullHeight {
+  height: 100vh; }
+
+.removeMargin {
+  margin: 0 !important; }
+
+.loginContainer {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column; }
+  .loginContainer img {
+    width: 100%; }
+
 .body-page-transition {
   overflow: hidden; }
   .body-page-transition #page-transition {
@@ -16144,7 +16155,7 @@ button:focus, :focus {
     align-items: center; }
   .body-page-transition #page-transition > div:after {
     content: "";
-    background-image: url("../img/theme/img-1-1000x600.jpg");
+    background-image: url("../img/theme/whydo.jpg");
     background-size: cover;
     position: fixed;
     z-index: 9998;
@@ -16177,15 +16188,4 @@ button:focus, :focus {
   margin-right: 4px; }
 
 .table .badge i {
-  margin-right: 10px;
-}
-.headerContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.reactSelectContainer {
-  background: red;
-  width: 100px !important;
-}
-/*# sourceMappingURL=nextjs-argon-dashboard.css.map */
+  margin-right: 10px; }
