@@ -18,16 +18,15 @@ import {
 // layout for this page
 import Auth from "layouts/Auth.js";
 import {AuthContext} from "../../contexts/AuthContext";
-import { toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {ImSpinner9} from "react-icons/im";
+import '../../assets/scss/react/_login.scss'
 function Login() {
-
   const { register, handleSubmit } = useForm();
-
-  const {signIn} = useContext(AuthContext || null )
+  const {signIn, isLoading, loginError} = useContext(AuthContext || null )
 
   async function handleSignIn(data) {
-      await signIn(data)
+    await signIn(data)
   }
 
   return (
@@ -52,7 +51,7 @@ function Login() {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                      {...register('email')}
+                    {...register('email')}
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
@@ -67,7 +66,7 @@ function Login() {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                      {...register('password')}
+                    {...register('password')}
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
@@ -87,9 +86,18 @@ function Login() {
                   <span className="text-muted">Remember me</span>
                 </label>
               </div>
-              <div className="text-center">
-                <Button className="my-4" color="primary" type="submit">
-                  Sign in
+
+              <div className={`text-center buttonContainer`}>
+                {loginError && <span className={'spanError'}>Login ou senha incorretos</span>}
+                <Button className={`my-4 loginButton`} color="primary" type="submit" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <ImSpinner9 size={20} />
+                      Sign In
+                    </>
+                  ) : (
+                    'Sign in'
+                  )}
                 </Button>
               </div>
             </Form>
