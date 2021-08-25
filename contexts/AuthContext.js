@@ -9,6 +9,8 @@ export const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
   const isAuthenticated = !!user;
@@ -21,7 +23,6 @@ export function AuthProvider({ children }) {
       api.get(`/users/auth?email=${email}`).then(response => {
         const newUser = response.data[0]
         setUser(newUser)
-
       })
     }
 
@@ -29,6 +30,7 @@ export function AuthProvider({ children }) {
 
   async function signIn({email, password}) {
     try {
+      setIsLoading(true)
       const {data: {access_token}} = await api.post('/users/authenticate', {
         email,
         password
@@ -37,23 +39,27 @@ export function AuthProvider({ children }) {
         maxAge: 60 * 60 * 1, // 1 hour
       })
 
+      localStorage.setItem("whydo:accessToken", access_token);
+
       setCookie(undefined, 'whydo-email', email, {
         maxAge: 60 * 60 * 1, // 1 hour
       })
 
+
       setUser(email)
       setAccessToken(access_token)
+      setIsLoading(false)
+      setLoginError(false)
       Router.push('/admin/dashboard')
     } catch (e) {
       console.log(e)
-      toast.error('Login ou senha incorretos', {
-        position: toast.POSITION.TOP_CENTER
-      })
+      setIsLoading(false)
+      setLoginError(true)
     }
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{ user, isAuthenticated,isLoading, loginError, signIn }}>
       {children}
     </AuthContext.Provider>
 
