@@ -43,7 +43,7 @@ const Dashboard = (props) => {
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
   useEffect(() => {
-    if(event !== 0) {
+    if(event) {
       api.get(`/events_login/?id_event=${event}`).then(({data}) => {
 
         const formatedHour = data.map(it => {
