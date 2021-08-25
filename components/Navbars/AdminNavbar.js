@@ -6,12 +6,12 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Form,
-  FormGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  InputGroup,
+  // Form,
+  // FormGroup,
+  // InputGroupAddon,
+  // InputGroupText,
+  // Input,
+  // InputGroup,
   Navbar,
   Nav,
   Container,
@@ -23,12 +23,20 @@ import {api} from "../../services/api";
 import {destroyCookie} from 'nookies'
 import Router from "next/router";
 import {toast} from "react-toastify";
-function AdminNavbar({ brandText }) {
+import {EventContext} from "../../contexts/EventContext";
 
+function AdminNavbar({ brandText }) {
   const [events, setEvents] = useState([]);
 
+
+  const { user } = useContext(AuthContext || null)
+  const { handleChangeEvent, event } = useContext(EventContext || null)
   useEffect(() => {
-    api.get('/events/').then(({data}) => {
+    const token = localStorage.getItem("whydo:accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    };
+    api.get('/events/', config).then(({data}) => {
       setEvents(data)
     })
   },[])
@@ -38,31 +46,37 @@ function AdminNavbar({ brandText }) {
   events.map(event => {
     const value = event.name.toLowerCase()
     options.push({
+      id: event.id,
       value,
       label: event.name
     })
   })
 
-  const { user } = useContext(AuthContext || null)
-
-  console.log(user)
   const name = user ? user.name : 'Usuario'
+  const [eventByUser] = options.filter(it => it.id === event)
 
   function handleLogout() {
     destroyCookie(undefined, 'whydo-token')
     destroyCookie(undefined, 'whydo-email')
+
+
     Router.push("/auth/login");
     toast.success('Deslogado com sucesso!', {
       position: toast.POSITION.TOP_CENTER
     })
   }
 
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container className="headerContainer" fluid >
           <div style={{width: '250px'}}>
-            <Select options={options} />
+            <Select
+              instanceId={"react-select"}
+              onChange={e => handleChangeEvent(e.id)}
+              value={eventByUser}
+              options={options} />
           </div>
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
