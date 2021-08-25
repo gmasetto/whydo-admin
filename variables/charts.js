@@ -328,7 +328,7 @@ let chartExample1 = {
 
             callback: function (value) {
               if (!(value % 10)) {
-                return "$" + value + "k";
+                return "" + value + "k";
               }
             },
           },
@@ -346,24 +346,25 @@ let chartExample1 = {
             content += label;
           }
 
-          content += "$" + yLabel + "k";
+          content += "" + yLabel + "k";
           return content;
         },
       },
     },
   },
-  data1: (canvas) => {
+  data1: (chartsHours, chartsAccess) => {
+
     return {
-      labels: ["Jan", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: chartsHours,
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 70],
+          data: chartsAccess,
         },
       ],
     };
   },
-  data2: (canvas) => {
+  data2: (chartsHours, chartsAccess) => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
